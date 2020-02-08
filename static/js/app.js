@@ -28,9 +28,28 @@ function buildTable(data) {
     });
 }
 
+function handleClick() {
+    // .select: select the very first element that matches #datetime
+    // d3.select tell D3 to look for #datetime id in HTML tags
+    // what is .proerty("value"); doing?
+    let date = d3.select("#datetime").property("value");
 
+    // save original data as new variable that can be manipulated
+    let filteredData = tableData;
 
+    // If there is a date already set, then use that date as a filter. If not, then return the default data
+    if (date) {
+        filteredData = filteredData.filter(row => row.datetime === date);
+    };
+    // Rebuild the table using the filtered data
+    buildTable(filteredData);
+};
 
+// listen for click
+// #filter-btn: html unique id
+// .on("click", handleClick): tell d3 to execute handleClick()
+    // when the button with an id of filter-btn is clicked
+d3.select("#filter-btn").on("click", handleClick);
 
-
-
+// Show users original data when the page loads
+buildTable(tableData);
