@@ -35,7 +35,7 @@ function updateFilters() {
   let shape = d3.select("#ufoShape").property("value");
 
   // If a filter value was entered then add that filterId and value to the filters list. Otherwise, don't add to the list
-  // if date exists, push object, otherwise null
+  // if date exists, then push object to filters, otherwise null
   date ? filters.push({id:"datetime", value: date}) : null
   city ? filters.push({id:"city", value: city}) : null
   state ? filters.push({id:"state", value: state}) : null
